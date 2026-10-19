@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Java_problem_sloving/Arrays_problem_solving/Arrays_problem_solving.iml" filepath="$PROJECT_DIR$/Java_problem_sloving/Arrays_problem_solving/Arrays_problem_solving.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/DSA_JAVA.iml" filepath="$PROJECT_DIR$/.idea/DSA_JAVA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java_problem_sloving/Java_problem_sloving.iml" filepath="$PROJECT_DIR$/Java_problem_sloving/Java_problem_sloving.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java_problem_sloving/Logic_building/Logic_building.iml" filepath="$PROJECT_DIR$/Java_problem_sloving/Logic_building/Logic_building.iml" />
+    </modules>
+  </component>
+</project>

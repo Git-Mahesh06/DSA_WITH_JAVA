@@ -1,4 +1,4 @@
-class nd {
+class nd{
     int data;
     nd next;
 }

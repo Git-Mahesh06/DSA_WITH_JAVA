@@ -1,107 +1,125 @@
-class nds<T>{
+class Node<T> {
     T data;
-    nds next;
-}
+    Node<T> next;
 
-class stackLLl<T> {
-    nds<T> top;
-    stackLLl(){
-        top=null;
+    public Node(T data) {
+        this.data = data;
+        this.next = null;
     }
-    void push(T val){
-        nds<T> t=new nds<>();
-        t.data=val;
-        t.next=top;
-        top=t;
+}
+class Stacks<T> {
+    private Node<T> top;
+
+    public Stacks() {
+        this.top = null;
     }
-    T pop(){
-        nds<T> p=top;
-        T x;
-        if(p==null)
-            throw new RuntimeException("Stackunderflow");
-        x=p.data;
-        top=top.next;
-        p.next=null;
-        p=null;
-        return x;
+
+    public boolean isEmpty() {
+        return top == null;
     }
-    T peek(int index){
-        nds<T> t=top;
-        for(int i=0;i<index-1 && t!=null;i++)
-            t=t.next;
-        T x;
-        if(t==null) {
-            throw new RuntimeException("Stackunderflow");
+
+    public void push(T element) {
+        Node<T> newNode = new Node<>(element);
+        newNode.next = top;
+        top = newNode;
+    }
+
+    public T pop() {
+        if (isEmpty()) {
+            throw new RuntimeException("Stack Underflow");
         }
-        x = t.data;
-        return x;
+        T poppedElement = top.data;
+        top = top.next;
+        return poppedElement;
     }
-    void display(){
-        nds<T> p=top;
-        while(p!=null){
-            System.out.print(p.data+" ");
-            p=p.next;
+
+    public T peek() {
+        if (isEmpty()) {
+            throw new RuntimeException("Stack Underflow");
+        }
+        return top.data;
+    }
+
+    public void display() {
+        Node<T> current = top;
+        while(null != current) {
+            System.out.print(current.data  + " ");
+            current = current.next;
         }
         System.out.println();
     }
-    boolean isEmpty(){
-        if(top==null){
-            return true;
-        }
-        return false;
-    }
-    T stackTop(){
-        return top.data;
-    }
+
 }
+
 public class InfixtopostfixconversionLinkedList {
-    static boolean operand(char x) {
-        return x != '+' && x != '-' &&
-                x != '*' && x != '/';
+
+    static boolean isOperand(char c) {
+        return  !(c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '(' || c == ')');
     }
 
-    static int precedence(char x) {
-        if (x == '+' || x == '-') {
-            return 1;
-        } else if (x == '*' || x == '/') {
-            return 2;
+    static int outPrecedence(char c) {
+        switch (c) {
+            case '+':
+            case '-':
+                return 1;
+            case '*':
+            case '/':
+                return 3;
+            case '^':
+                return 6;
+            case '(':
+                return 7;
+            case ')':
+            default:
+                return 0;
         }
-        return 0;
     }
-static String infixtopost(String infix){
-        StringBuilder postfix=new StringBuilder();
-        stackLLl<Character> sc=new stackLLl<Character>();
-    int i = 0;
 
-    while (i < infix.length()) {
-        char x = infix.charAt(i);
+    static int inPrecedence(char c) {
+        switch (c) {
+            case '+':
+            case '-':
+                return 2;
+            case '*':
+            case '/':
+                return 4;
+            case '^':
+                return 5;
+            case '(':
+            default:
+                return 0;
+        }
+    }
 
-        if (Character.isWhitespace(x)) {
-            i++;
-        } else if (operand(x)) {
-            postfix.append(x);
-            i++;
-        } else {
-            while (!sc.isEmpty() &&
-                    precedence(sc.stackTop()) >= precedence(x)) {
-                postfix.append(sc.pop());
+    static String inToPost(String infix) {
+        Stacks<Character> st = new Stacks<>();
+        int i = 0;
+        StringBuilder postfix = new StringBuilder();
+        while (i < infix.length()) {
+            char temp = infix.charAt(i);
+            if(isOperand(temp)) {
+                postfix.append(temp);
+                i++;
+            } else {
+                if(st.isEmpty() || outPrecedence(temp) > inPrecedence(st.peek())) {
+                    st.push(temp);
+                    i++;
+                } else if(outPrecedence(temp) < inPrecedence(st.peek())) {
+                    postfix.append(st.pop());
+                } else {
+                    st.pop();
+                    i++;
+                }
             }
-
-            sc.push(x);
-            i++;
         }
+        while (!st.isEmpty()) {
+            postfix.append(st.pop());
+        }
+        return postfix.toString();
     }
 
-    while (!sc.isEmpty()) {
-        postfix.append(sc.pop());
-    }
-
-    return postfix.toString();
-}
     public static void main(String[] args) {
-        String infix="a+b*c-d/e";
-        System.out.println("Infix "+infix);
-        System.out.println("Postfix "+infixtopost(infix));
-
+        String infix = "(a^b^c)+d/e";
+        System.out.println(inToPost(infix));
     }
 }

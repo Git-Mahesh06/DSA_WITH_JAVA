@@ -104,7 +104,7 @@ public class InfixtopostfixconversionLinkedList {
                 if(st.isEmpty() || outPrecedence(temp) > inPrecedence(st.peek())) {
                     st.push(temp);
                     i++;
-                } else if(outPrecedence(temp) < inPrecedence(st.peek())) {
+                } else if(st.isEmpty() || outPrecedence(temp) < inPrecedence(st.peek())) {
                     postfix.append(st.pop());
                 } else {
                     st.pop();
@@ -119,7 +119,7 @@ public class InfixtopostfixconversionLinkedList {
     }
 
     public static void main(String[] args) {
-        String infix = "(a^b^c)+d/e";
+        String infix = "((a^b^c)*(d-e*d))";
         System.out.println(inToPost(infix));
     }
 }

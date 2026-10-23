@@ -95,8 +95,8 @@ public class Genericstackinfixtopostfix {
                 postfix.append(x);
                 i++;
             } else {
-                while (!sc.isEmpty() &&
-                        precedence(sc.stackTop()) >= precedence(x)) {
+                while(!sc.isEmpty() &&
+                        precedence(sc.peek()) >= precedence(x)) {
                     postfix.append(sc.pop());
                 }
 

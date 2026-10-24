@@ -34,23 +34,44 @@ class Stackkk<T> {
     }
 }
     public class parenthesis {
-        static boolean parenthesisbalance(String exp){
-            Stackkk<Character> s=new Stackkk<>(exp.length());
-            for (int i=0;i<exp.length();i++){
-                char x=exp.charAt(i);
-                if(x=='('){
+        static boolean parenthesisbalance(String exp) {
+            Stackkk<Character> s = new Stackkk<>(exp.length());
+            for (int i = 0; i < exp.length(); i++) {
+                char x = exp.charAt(i);
+                if (x == '(') {
                     s.push(x);
-                } else if (x==')') {
-                    if(s.isempty()) return false;
+                } else if (x == ')') {
+                    if (s.isempty()) return false;
                     s.pop();
                 }
 
             }
             return s.isempty();
         }
-        public static void main(String[] args) {
-            String exp="(((a+b)*(c-d)))";
-            System.out.println(parenthesisbalance(exp));
+
+        static boolean isbracket(String exp) {
+            Stackkk<Character> s = new Stackkk<>(exp.length());
+            for (int i = 0; i < exp.length(); i++) {
+                char x = exp.charAt(i);
+                if (x == '(' || x == '{' || x == '[') {
+                    s.push(x);
+                } else if (x == ')' || x == '}' || x == ']') {
+                    if (s.isempty()) return false;
+                    char y = s.pop();
+                    if ((x == ')' && y != '(') ||
+                            (x == '}' && y != '{') ||
+                            (x == ']' && y != '[')) {
+                        return false;
+                    }
+                }
+            }
+            return s.isempty();
+        }
+        public static void main(String[] args)
+            {
+            String exp="((a + b) * (c - d))";
+           System.out.println(parenthesisbalance(exp));
+            System.out.println(isbracket(exp));
         }
     }
 

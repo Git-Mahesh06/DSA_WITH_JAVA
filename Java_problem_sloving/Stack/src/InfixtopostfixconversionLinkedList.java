@@ -122,7 +122,7 @@ public class InfixtopostfixconversionLinkedList {
     }
 
     public static void main(String[] args) {
-        String infix = "5+4*3-6/2";
+        String infix = "(5+4)*3-6/2";
         String post= inToPost(infix);
         System.out.println(post);
 

@@ -54,7 +54,10 @@ class Stacks<T> {
 public class InfixtopostfixconversionLinkedList {
 
     static boolean isOperand(char c) {
-        return  !(c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '(' || c == ')');
+        if(c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '(' || c == ')')
+            return false;
+        else
+            return true;
     }
 
     static int outPrecedence(char c) {
@@ -119,7 +122,48 @@ public class InfixtopostfixconversionLinkedList {
     }
 
     public static void main(String[] args) {
-        String infix = "((a^b^c)*(d-e*d))";
-        System.out.println(inToPost(infix));
+        String infix = "5+4*3-6/2";
+        String post= inToPost(infix);
+        System.out.println(post);
+
+        stackLL<Integer> ss=new stackLL<Integer>();
+        int res=0;
+        int x1,x2;
+        for(int i=0;i<post.length();i++){
+
+            if(isOperand(post.charAt(i)))
+            {
+                ss.push(post.charAt(i)-'0');
+            }
+            else {
+                x2 = ss.pop();
+                x1 = ss.pop();
+                switch (post.charAt(i)) {
+                    case '+':
+                        res = x1 + x2;
+                        ss.push(res);
+                        break;
+                    case '-':
+                        res = x1 - x2;
+                        ss.push(res);
+                        break;
+                    case '*':
+                        res = x1 * x2;
+                        ss.push(res);
+                        break;
+                    case '/':
+                        res = x1 / x2;
+                        ss.push(res);
+                        break;
+                    case '^':
+                        res = x1 ^ x2;
+                        ss.push(res);
+                        break;
+
+                }
+            }
+        }
+        System.out.println("Res: "+ss.pop());
+
     }
 }

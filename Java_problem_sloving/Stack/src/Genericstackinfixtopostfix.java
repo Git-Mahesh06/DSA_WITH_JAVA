@@ -91,15 +91,15 @@ public class Genericstackinfixtopostfix {
 
             if (Character.isWhitespace(x)) {
                 i++;
-            } else if (operand(x)) {
+            }
+            if (operand(x)) {
                 postfix.append(x);
                 i++;
-            } else {
-                while(!sc.isEmpty() &&
-                        precedence(sc.peek()) >= precedence(x)) {
-                    postfix.append(sc.pop());
-                }
-
+            } else if (!sc.isEmpty() &&
+                    precedence(sc.peek()) >= precedence(x)) {
+                postfix.append(sc.pop());
+            }
+            else{
                 sc.push(x);
                 i++;
             }

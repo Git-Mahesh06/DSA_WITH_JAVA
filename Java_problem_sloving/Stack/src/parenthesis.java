@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 class Stackkk<T> {
     T[] a;
     int s;
@@ -31,6 +33,9 @@ class Stackkk<T> {
 
     boolean isempty() {
         return top == -1;
+    }
+    T stacktop(){
+        return a[top];
     }
 }
     public class parenthesis {
@@ -67,11 +72,32 @@ class Stackkk<T> {
             }
             return s.isempty();
         }
+        static void nextgraterelement(int[] a){
+            Stackkk<Integer> ss=new Stackkk<>(a.length);
+            int[] G=new int[a.length];
+            int i=a.length-1;
+            while(i>=0){
+                if(ss.isempty()){
+                    G[i]=-1;
+                    ss.push(a[i]);
+                    i--;
+                } else if (a[i]<ss.stacktop()) {
+                    G[i]=ss.stacktop();
+                    ss.push(a[i]);
+                    i--;
+                }
+                else ss.pop();
+            }
+            System.out.println(Arrays.toString(G));
+        }
         public static void main(String[] args)
             {
             String exp="((a + b) * (c - d))";
            System.out.println(parenthesisbalance(exp));
             System.out.println(isbracket(exp));
+            int[] a={2,3,1,5,4,3,2,6,3,7,5};
+                System.out.println(Arrays.toString(a));
+                nextgraterelement(a);
         }
     }
 

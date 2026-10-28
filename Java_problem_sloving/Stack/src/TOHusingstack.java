@@ -86,7 +86,7 @@ public class TOHusingstack {
                 tower to=st.pop();
                 System.out.println("Move disk from "+to.A+" to "+to.C);
                 n=to.n-1;
-                i=to.B;j= to.A;k= to.C;
+                i=to.B;j= to.A;k= to.A;
             }
         }
     }

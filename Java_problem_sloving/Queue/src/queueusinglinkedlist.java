@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 
 class  qnnd{
     int data;
@@ -34,11 +35,32 @@ class methodsqeue{
     }
     void display(){
         qnnd h=r;
+        if(isempty())
+            throw new RuntimeException("Is empty");
         while(h!=null){
             System.out.print(h.data+" ");
             h=h.next;
         }
     }
+    boolean isfull(){
+        return f==r;
+    }
+    boolean isempty(){
+        return f==null;
+    }
+    int first(){
+        if(isempty())
+            throw new RuntimeException("is empty");
+        int e=r.data;
+        return e;
+    }
+    int last(){
+        if(isempty())
+            throw new RuntimeException("is empty");
+        int e=f.data;
+        return e;
+    }
+
 }
 public class queueusinglinkedlist {
     public static void main(String[] args) {
@@ -50,5 +72,11 @@ public class queueusinglinkedlist {
     ms.display();
         System.out.println(ms.dequeue());
     ms.display();
+        System.out.println(ms.first());
+        System.out.println(ms.last());
+        ms.dequeue();
+        ms.dequeue();
+        ms.display();
+
     }
 }

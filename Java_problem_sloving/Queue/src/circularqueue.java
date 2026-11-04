@@ -29,6 +29,12 @@ class queue1{
       }while(i!=t);
       }
     }
+    int first(){
+        return cq[(r+1)%s];
+    }
+    int lat(){
+        return cq[t];
+    }
 
 }
 public class circularqueue {
@@ -48,5 +54,7 @@ public class circularqueue {
         qq.enqueue(50);
         System.out.println();
         qq.display();
+        System.out.println(qq.first());
+        System.out.println(qq.lat());
     }
 }

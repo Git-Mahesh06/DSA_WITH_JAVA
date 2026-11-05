@@ -16,8 +16,9 @@ class queue1{
     }
     int dequeue(){
         if(r==t) System.out.println("Empty");
+
+        int val=cq[(r+1)%s];
         r=(r+1)%s;
-        int val=cq[r];
         return val;
     }
     void display(){
@@ -48,8 +49,9 @@ public class circularqueue {
        // qq.enqueue(30);
         System.out.println();
         qq.display();
-//        System.out.println(qq.dequeue());
-        qq.dequeue();
+        System.out.println(qq.dequeue());
+        //qq.dequeue();
+        System.out.println();
         qq.display();
         qq.enqueue(50);
         System.out.println();

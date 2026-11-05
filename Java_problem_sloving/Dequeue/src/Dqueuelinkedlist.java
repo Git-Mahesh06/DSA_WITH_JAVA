@@ -21,15 +21,12 @@ class dqmethods{
         if(f==null){
             head=r=f=t;
         }
-        t.next=f;
-        f=t;
     }
     int deletelast(){
         if(f==r){
             f=r=null;
             throw new RuntimeException("No elements");
         }
-        dqnodes h=f;
         while(h.next!=null){
             r=h;
             h=h.next;
@@ -38,18 +35,7 @@ class dqmethods{
         int e=h.data;
         return e;
     }
-    int deletefront(){
-        if(f==r){
-            f=r=null;
-        }
-        dqnodes n=f;
-        f=f.next;
-        int e=n.data;
-        n=null;
-        return e;
-    }
     void display(){
-        dqnodes cur=f;
         while(cur!=null){
             System.out.print(cur.data+" ");
             cur=cur.next;
@@ -69,12 +55,6 @@ public class Dqueuelinkedlist {
         dqm.deletelast();
         dqm.display();
         dqm.insertlast(50);
-        dqm.display();
-        dqm.insertfront(60);
-        System.out.println();
-        dqm.display();
-        System.out.println(dqm.deletefront());
-        System.out.println();
         dqm.display();
     }
 }

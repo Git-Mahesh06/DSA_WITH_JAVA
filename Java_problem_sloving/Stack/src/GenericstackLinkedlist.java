@@ -45,17 +45,60 @@ class stackLL<T> {
         }
         System.out.println();
     }
+    boolean isemp(){
+        return top==null;
+    }
 }
+class Queueusingstack<T>{
+    stackLL<T> s1;
+    stackLL<T> s2;
+    Queueusingstack(){
+        s1=new stackLL<T>();
+        s2=new stackLL<T>();
+    }
+    boolean isempty(){
+        return s1.isemp() && s2.isemp();
+    }
+    void enqueue(T val){
+        s1.push(val);
+    }
+    T dequeue(){
+        if(s2.isemp()){
+            if(s1.isemp()){
+                throw new RuntimeException("NO elements");
+            }
+            else{
+                while(!s1.isemp())
+                    s2.push(s1.pop());
+            }
+        }
+        return s2.pop();
+    }
+}
+
 public class GenericstackLinkedlist{
     public static void main(String[] args) {
-        stackLL<Character> ss=new stackLL<Character>();
-        ss.push('M');
-        ss.push('A');
-        ss.push('H');
-        ss.display();
-        // System.out.println(ss.pop());
-        ss.display();
-        System.out.println(ss.peek(3));
-
+//        stackLL<Character> ss=new stackLL<Character>();
+//        ss.push('M');
+//        ss.push('A');
+//        ss.push('H');
+//        ss.display();
+//        // System.out.println(ss.pop());
+//        ss.display();
+//        System.out.println(ss.peek(3));
+        Queueusingstack<Object> qq=new Queueusingstack<>();
+        qq.enqueue(10);
+        qq.enqueue(20);
+        qq.enqueue(30);
+        qq.enqueue(40);
+        qq.s1.display();
+        System.out.println();
+        qq.dequeue();
+        qq.enqueue(50);
+        qq.enqueue(60);
+        //qq.s1.display();
+        System.out.println();
+        qq.s1.display();
+        qq.s2.display();
     }
 }

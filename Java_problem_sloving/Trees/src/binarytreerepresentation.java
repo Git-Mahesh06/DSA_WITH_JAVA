@@ -67,6 +67,6 @@ public class binarytreerepresentation {
         inorder(root);
         System.out.println();
         postorder(root);
-
+// Linked list representation using Array and its traversal
     }
 }

@@ -28,15 +28,15 @@ public class binarytreerepresentation {
     }
     static void inorder(Node p) {
         if (p != null) {
-            preorder(p.lchild);
+            inorder(p.lchild);
             System.out.print(p.data + " ");
-            preorder(p.rchild);
+            inorder(p.rchild);
         }
     }
     static void postorder(Node p) {
         if (p != null) {
-            preorder(p.lchild);
-            preorder(p.rchild);
+            postorder(p.lchild);
+            postorder(p.rchild);
             System.out.print(p.data + " ");
         }
     }
@@ -54,13 +54,12 @@ public class binarytreerepresentation {
             temp=new Node(a[i++]);
             next.lchild=temp;
             d.addLast(temp);
-            if(i < a.length) {
-                temp = new Node(a[i++]);
-                next.rchild = temp;
-                d.addLast(temp);
-            }
+
+            temp = new Node(a[i++]);
+            next.rchild = temp;
+            d.addLast(temp);
         }
-        System.out.println(count(root));
+        //System.out.println(count(root));
         System.out.println();
         preorder(root);
         System.out.println();

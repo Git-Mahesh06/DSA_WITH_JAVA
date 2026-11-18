@@ -11,6 +11,14 @@ class Node{
     }
 }
 public class binarytreerepresentation {
+    static int count(Node p){
+        if(p==null) return 0;
+        else{
+            int x=count(p.lchild);
+            int y=count(p.rchild);
+            return x+y+1;
+        }
+    }
     static Node root;
     public static void main(String[] args) {
         int[] a={10,20,30,40,50,60,70};
@@ -30,5 +38,6 @@ public class binarytreerepresentation {
             d.addLast(temp);
 
         }
+        System.out.println(count(root));
     }
 }

@@ -13,6 +13,14 @@ class node{
         rchild=null;
     }
 }
+class entry{
+    node nd;
+    int count;
+    entry(node nd,int count){
+        this.nd=nd;
+        this.count=count;
+    }
+}
 class iterativetraversal{
     Stack<node> s=new Stack<>();
     public void preorder(node p){
@@ -37,6 +45,28 @@ class iterativetraversal{
                 p=s.pop();
                 System.out.println(p.data+" ");
                 p=p.rchild;
+            }
+        }
+    }
+    public void postorder(node p){
+        Stack<entry> sp=new Stack<>();
+        int i=0;
+        while(!sp.isEmpty() || p!=null){
+            if(p!=null){
+                sp.push(new entry(p,i+1));
+                p=p.lchild;
+            }
+            else{
+                entry e=sp.pop();
+                if(e.count==1){
+                    e.count+=1;
+                    sp.push(e);
+                    p=e.nd.rchild;
+                }
+                else{
+                    System.out.print(e.nd.data+" ");
+                    p=null;
+                }
             }
         }
     }
@@ -104,5 +134,7 @@ public class treecreationusingkeyb {
         i.preorder(root);
         System.out.println();
         i.inorder(root);
+        System.out.println();
+        i.postorder(root);
     }
 }

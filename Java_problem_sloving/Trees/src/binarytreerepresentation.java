@@ -11,6 +11,7 @@ class Node{
     }
 }
 public class binarytreerepresentation {
+    static ArrayDeque<Node> d=new ArrayDeque<Node>();
     static int count(Node p){
         if(p==null) return 0;
         else{
@@ -40,11 +41,46 @@ public class binarytreerepresentation {
             System.out.print(p.data + " ");
         }
     }
+    static int height(Node p){
+        if(p==null) return 0;
+        else{
+            int lh=height(p.lchild);
+            int rh=height(p.rchild);
+            if(lh>rh)
+                return lh+1;
+            else
+                return rh+1;
+        }
+    }
+    static void delete(Node p){
+        if(p!=null){
+            delete(p.lchild);
+            delete(p.rchild);
+            p.lchild=p.rchild=null;
+        }
+
+    }
+    static void levelordertraversal(Node p){
+        System.out.print(p.data+" ");
+        d.addLast(p);
+        while(!d.isEmpty()){
+            p=d.removeFirst();
+            System.out.print(p.data+" ");
+            if(p.lchild!=null){
+
+                d.addLast(p.lchild);
+            }
+            if(p.rchild!=null){
+
+                d.addLast(p.rchild);
+            }
+        }
+    }
 
     public static void main(String[] args) {
-        Node root=null;
+        Node root;
         int[] a={10,20,30,40,50,60,70};
-        ArrayDeque<Node> d=new ArrayDeque<Node>();
+
         root=new Node(a[0]);
         d.addLast(root);
         int i=1;
@@ -66,6 +102,9 @@ public class binarytreerepresentation {
         inorder(root);
         System.out.println();
         postorder(root);
-// Linked list representation using Array and its traversal
+        System.out.println(height(root));
+        // Linked list representation using Array and its traversal
+//        System.out.println();
+//        levelordertraversal(root);
     }
 }

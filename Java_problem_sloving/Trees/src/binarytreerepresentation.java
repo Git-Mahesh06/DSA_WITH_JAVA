@@ -96,13 +96,13 @@ public class binarytreerepresentation {
             d.addLast(temp);
         }
         //System.out.println(count(root));
-        System.out.println();
-        preorder(root);
-        System.out.println();
-        inorder(root);
-        System.out.println();
-        postorder(root);
-        System.out.println(height(root));
+//        System.out.println();
+//        preorder(root);
+//        System.out.println();
+//        inorder(root);
+//        System.out.println();
+//        postorder(root);
+//        System.out.println(height(root));
         // Linked list representation using Array and its traversal
 //        System.out.println();
 //        levelordertraversal(root);

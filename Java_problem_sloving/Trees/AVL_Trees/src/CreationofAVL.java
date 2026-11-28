@@ -38,13 +38,12 @@ class Binary{
     void LLrotation(nodes p){
         nodes pl=p.lchild;
         nodes plr=pl.rchild;
-        pl.rchild=p;
         p.lchild=plr;
+        pl.rchild=p;
         updateheight(p);
         updateheight(pl);
     }
     void LRrotation(nodes p){
-
     }
     void RLrotation(nodes p){
 
@@ -80,7 +79,7 @@ class Binary{
 public class CreationofAVL {
     public static void main(String[] args) {
     Binary b=new Binary();
-        int[] a = {10,23,14,34,5,6};
+        int[] a = {30,10,20};
         for(int k:a){
             b.insert(k);
         }
